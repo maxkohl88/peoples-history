@@ -1,0 +1,7 @@
+%h1 New League
+
+= form_for @league, url: { action: 'create' } do |f|
+  = f.text_field :name, placeholder: 'League name'
+  = f.text_field :espn_id, placeholder: 'ESPN League ID'
+  = f.text_field :sport_id, placeholder: 'Sport ID'
+  = f.submit 'create league'

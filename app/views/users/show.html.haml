@@ -10,4 +10,9 @@
     |
     = link_to 'Sign Up', new_user_registration_path
 
+= link_to 'Add a league', new_league_path
 
+%ul.leagues-list
+  - current_user.leagues.each do |league|
+    %li
+      = link_to "#{league.name}", league_path(league.id)
