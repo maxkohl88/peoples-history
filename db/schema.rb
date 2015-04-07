@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150309022352) do
+ActiveRecord::Schema.define(version: 20150405021230) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,9 +36,41 @@ ActiveRecord::Schema.define(version: 20150309022352) do
   add_index "memberships", ["league_id"], name: "index_memberships_on_league_id", using: :btree
   add_index "memberships", ["user_id"], name: "index_memberships_on_user_id", using: :btree
 
+  create_table "players", force: true do |t|
+    t.integer  "espn_id"
+    t.string   "name"
+    t.text     "postions",   default: [], array: true
+    t.integer  "team_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "players", ["team_id"], name: "index_players_on_team_id", using: :btree
+
+  create_table "season_standings", force: true do |t|
+    t.integer  "wins"
+    t.integer  "losses"
+    t.integer  "ties"
+    t.integer  "team_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "season_standings", ["team_id"], name: "index_season_standings_on_team_id", using: :btree
+
   create_table "sports", force: true do |t|
     t.string "name"
   end
+
+  create_table "teams", force: true do |t|
+    t.text     "names",      default: [], array: true
+    t.integer  "espn_id"
+    t.integer  "league_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "teams", ["league_id"], name: "index_teams_on_league_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false

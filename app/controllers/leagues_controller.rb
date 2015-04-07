@@ -1,5 +1,7 @@
 class LeaguesController < ApplicationController
 
+  before_action :authenticate_user!
+
   def new
     @league = League.new
 
