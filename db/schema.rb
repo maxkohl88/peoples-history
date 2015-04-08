@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150405021230) do
+ActiveRecord::Schema.define(version: 20150407201225) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -51,6 +51,7 @@ ActiveRecord::Schema.define(version: 20150405021230) do
     t.integer  "wins"
     t.integer  "losses"
     t.integer  "ties"
+    t.integer  "year"
     t.integer  "team_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -63,7 +64,7 @@ ActiveRecord::Schema.define(version: 20150405021230) do
   end
 
   create_table "teams", force: true do |t|
-    t.text     "names",      default: [], array: true
+    t.string   "name"
     t.integer  "espn_id"
     t.integer  "league_id"
     t.datetime "created_at"
@@ -89,5 +90,17 @@ ActiveRecord::Schema.define(version: 20150405021230) do
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+
+  create_table "weekly_results", force: true do |t|
+    t.integer  "points_scored"
+    t.integer  "scoring_period"
+    t.integer  "year"
+    t.integer  "opponent_id"
+    t.integer  "team_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "weekly_results", ["team_id"], name: "index_weekly_results_on_team_id", using: :btree
 
 end

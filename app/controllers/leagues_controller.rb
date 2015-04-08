@@ -1,6 +1,7 @@
 class LeaguesController < ApplicationController
 
   before_action :authenticate_user!
+  helper_method :league
 
   def new
     @league = League.new
@@ -11,7 +12,6 @@ class LeaguesController < ApplicationController
   end
 
   def show
-    @league = League.find params[:id]
   end
 
   def create
@@ -30,5 +30,9 @@ class LeaguesController < ApplicationController
 
   def league_params
     params.require(:league).permit(:name, :espn_id, :sport_id)
+  end
+
+  def league
+    @league ||= League.find params[:id]    
   end
 end

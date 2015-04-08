@@ -1,6 +1,54 @@
-%p Standings history
+#league-container
+  %h1 
+    = league.name
+  .lifetime-standings-container
+    %p Lifetime Standings
+    %table.lifetime-standings
+      %thead
+        %th Team
+        %th Wins
+        %th Losses
+        %th Ties
+        %th Winning Percentage
+      %tbody
+        - league.sorted_lifetime_standings.each do |standing|
+          %tr
+            %td
+              = standing[:name]
+            %td
+              = standing[:wins]
+            %td
+              = standing[:losses]
+            %td
+              = standing[:ties]
+            %td
+              = standing[:winning_percentage]
 
-%p League adjusted record
+  .weighted-standings-container
+    %p Weighted 2014 Standings
+    %table.weighted-standings
+      %thead
+        %th Team
+        %th Weighted Wins
+        %th Actual Wins
+        %th Differential
+        %th Losses
+        %th Ties
+      %tbody
+        - league.weighted_season_standings.each do |standing|
+          %tr
+            %td
+              = standing[:name]
+            %td
+              = standing[:weighted_wins]
+            %td
+              = standing[:actual_wins]
+            %td
+              = standing[:win_diff]
+            %td
+              = standing[:losses]
+            %td
+              = standing[:ties]
 
 %p League moments
 

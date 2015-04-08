@@ -4,6 +4,7 @@ class CreateSeasonStandings < ActiveRecord::Migration
       t.integer :wins
       t.integer :losses
       t.integer :ties
+      t.integer :year
       t.references :team, index: true
 
       t.timestamps

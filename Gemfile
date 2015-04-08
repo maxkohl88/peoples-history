@@ -17,6 +17,7 @@ gem 'pg'
 
 gem 'dotenv'
 gem 'nokogiri'
+gem 'foundation-rails', '5.4.5'
 
 group :development, :test do
   gem 'rspec-rails'
