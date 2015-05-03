@@ -1,0 +1,11 @@
+url:
+http://games.espn.go.com/flb/boxscorefull?leagueId=140424&teamId=16&scoringPeriodId=8&seasonId=2015&view=matchup&version=full
+
+prep:
+
+<!-- add scoring period counter to team -->
+create daily result model
+create daily result migration
+create daily result collection task
+
+

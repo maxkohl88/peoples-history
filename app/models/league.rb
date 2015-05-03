@@ -9,7 +9,7 @@ class League < ActiveRecord::Base
   def collect_yearly_standings(year)
     doc = Nokogiri::HTML open("http://games.espn.go.com/flb/standings?leagueId=#{espn_id}&seasonId=#{year}")
     rows = doc.css 'table.tableBody tr.tableBody'
-    
+      
     rows[0..11].each do |row|
       attributes = team_espn_attributes row
 
